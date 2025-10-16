@@ -1,23 +1,3 @@
-# type-is
-
-[![NPM Version][npm-version-image]][npm-url]
-[![NPM Downloads][npm-downloads-image]][npm-url]
-[![Node.js Version][node-version-image]][node-version-url]
-[![Build Status][ci-image]][ci-url]
-[![Test Coverage][coveralls-image]][coveralls-url]
-
-Infer the content-type of a request.
-
-## Install
-
-This is a [Node.js](https://nodejs.org/en/) module available through the
-[npm registry](https://www.npmjs.com/). Installation is done using the
-[`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
-
-```sh
-$ npm install type-is
-```
-
 ## API
 
 ```js
@@ -181,18 +161,3 @@ app.use(function bodyParser (req, res, next) {
 })
 ```
 
-## License
-
-[MIT](LICENSE)
-
-[ci-image]: https://badgen.net/github/checks/jshttp/type-is/master?label=ci
-[ci-url]: https://github.com/jshttp/type-is/actions/workflows/ci.yml
-[coveralls-image]: https://badgen.net/coveralls/c/github/jshttp/type-is/master
-[coveralls-url]: https://coveralls.io/r/jshttp/type-is?branch=master
-[node-version-image]: https://badgen.net/npm/node/type-is
-[node-version-url]: https://nodejs.org/en/download
-[npm-downloads-image]: https://badgen.net/npm/dm/type-is
-[npm-url]: https://npmjs.org/package/type-is
-[npm-version-image]: https://badgen.net/npm/v/type-is
-[travis-image]: https://badgen.net/travis/jshttp/type-is/master
-[travis-url]: https://travis-ci.org/jshttp/type-is
