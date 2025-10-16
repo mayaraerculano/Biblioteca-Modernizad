@@ -1,0 +1,75 @@
+/* Reset e fonte */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Container principal */
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  padding: 30px 40px;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Título */
+h1 {
+  color: #fff;
+  margin-bottom: 30px;
+  font-size: 2.2em;
+  letter-spacing: 1px;
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+input {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  flex: 1 1 200px;
+  min-width: 150px;
+  transition: 0.3s;
+}
+
+input:focus {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px #00ffff;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  transition: 0.3s;
+}
+
+button:hov

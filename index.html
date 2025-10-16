@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Ultra Moderna</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>📚 Biblioteca Ultra Moderna</h1>
+
+  <form id="formLivro" onsubmit="adicionarLivro(event)">
+    <input type="text" id="titulo" placeholder="Título do livro" required>
+    <input type="text" id="autor" placeholder="Autor" required>
+    <button type="submit">Adicionar</button>
+  </form>
+
+  <ul id="listaLivros"></ul>
+</div>
+
+<!-- Modal de confirmação -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <p>Tem certeza que deseja excluir este livro?</p>
+    <button id="confirmBtn">Sim</button>
+    <button id="cancelBtn">Cancelar</button>
+  </div>
+</div>
+
+<script>
+const apiUrl = "http://localhost:3000/livros";
+let livroParaExcluir = null;
+
+// Listar livros
+async function listarLivros() {
+  try {
+    const res = await fetch(apiUrl);
+    const livros = await res.json();
+    const lista = document.getElementById("listaLivros");
+    lista.innerHTML = "";
+    livros.forEach(livro => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span>${livro.titulo} - ${livro.autor}</span>
+        <button class="delete-btn" onclick="abrirModal(${livro.id})">Excluir</button>
+      `;
+      lista.appendChild(li);
+    });
+  } catch(err) {
+    console.error("Erro ao carregar livros:", err);
+  }
+}
+
+// Adicionar livro
+async function adicionarLivro(event) {
+  event.preventDefault();
+  const titulo = document.getElementById("titulo").value;
+  const autor = document.getElementById("autor").value;
+
+  await fetch(apiUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ titulo, autor })
+  });
+
+  document.getElementById("titulo").value = "";
+  document.getElementById("autor").value = "";
+  listarLivros();
+}
+
+// Modal de exclusão
+function abrirModal(id) {
+  livroParaExcluir = id;
+  document.getElementById("modal").classList.add("show");
+}
+
+document.getElementById("confirmBtn").addEventListener("click", async () => {
+  if (livroParaExcluir !== null) {
+    await fetch(`${apiUrl}/${livroParaExcluir}`, { method: "DELETE" });
+    listarLivros();
+    livroParaExcluir = null;
+    document.getElementById("modal").classList.remove("show");
+  }
+});
+
+document.getElementById("cancelBtn").addEventListener("click", () => {
+  livroParaExcluir = null;
+  document.getElementById("modal").classList.remove("show");
+});
+
+// Inicializa a lista
+listarLivros();
+</script>
+
+</body>
+</html>
